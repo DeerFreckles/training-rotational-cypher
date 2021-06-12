@@ -1,24 +1,21 @@
-"""
-
-"""
-
-
 import math
 
+# Method takes a form identical to the Caesarean Cipher method, plus a number shifting case.
 
-# Add any extra import statements you may need here
-
-
-# Add any helper functions you may need here
-
-
-def rotationalCipher(input, rotation_factor):
-    # Write your code here
-
-
-
-# These are the tests we use to determine if the solution is correct.
-# You can add your own at the bottom, but they are otherwise not editable!
+def rotationalCipher(str_input, shift):
+    str_output      =  ""
+    letter_shift    = shift % 26
+    for i in str_input:
+        if i.isalpha():
+            if   i.isupper():
+                str_output += chr(((ord(i)-65+letter_shift))%26+65)
+            elif i.islower():
+                str_output += chr(((ord(i)-97+letter_shift))%26+97)
+        elif i.isdigit():
+            str_output += str((int(i)+shift)%10)
+        else:
+            str_output += i
+    return str_output
 
 def printString(string):
     print('[\"', string, '\"]', sep='', end='')
